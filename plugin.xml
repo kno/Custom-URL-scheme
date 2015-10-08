@@ -22,6 +22,7 @@
   <issue>https://github.com/EddyVerbruggen/Custom-URL-scheme/issues</issue>
 
   <preference name="URL_SCHEME" />
+  <preference name="URL_HOST" />
 
   <engines>
     <engine name="cordova" version=">=3.0.0"/>
@@ -38,7 +39,7 @@
         <dict>
           <key>CFBundleURLSchemes</key>
           <array>
-            <string>$URL_SCHEME</string>
+            <string>$URL_SCHEME$URL_HOST</string>
           </array>
         </dict>
       </array>
@@ -61,10 +62,11 @@
 
     <config-file target="AndroidManifest.xml" parent="/*/application/activity">
       <intent-filter>
-        <data android:scheme="$URL_SCHEME"/>
+        <data android:scheme="$URL_SCHEME" android:host="$URL_HOST"/>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
+        <data android:pathPattern="/.*"></data>
       </intent-filter>
     </config-file>
   </platform>
